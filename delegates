@@ -1,0 +1,46 @@
+i. Using Delegates and events
+CODE: 
+.aspx
+<%@ Page Language="C#" AutoEventWireup="true" 
+CodeBehind="WebForm7.aspx.cs" Inherits="Practical_3b_2.WebForm7" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ </div>
+ </form>
+</body>
+</html>
+.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+namespace Practical_3b_2
+{
+ public delegate void dell(int x, int y);
+ public partial class WebForm7 : System.Web.UI.Page
+ {
+ public void add(int a, int b)
+ {
+ Response.Write(a + b);
+ }
+ public void sub(int a, int b)
+ {
+ Response.Write("<br>" + (a - b));
+ }
+ protected void Page_Load(object sender, EventArgs e)
+ {
+ dell d1 = new dell(add);
+ dell d2 = new dell(sub);
+AWP T.21.69 Monisha Mudaliar
+ d1(20, 10); d2(20, 20);
+ }
+ }
+}
