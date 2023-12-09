@@ -1,0 +1,61 @@
+A. Create a web application to display Databinding using 
+dropdownlist control.
+CODE: 
+.aspx
+<%@ Page Language="C#" AutoEventWireup="true" 
+CodeBehind="WebForm25.aspx.cs"
+Inherits="WebApplication2.WebForm25" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ <asp:DropDownList ID="DropDownList1" AutoPostBack="true" 
+runat="server" 
+OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged"></asp:DropDo
+wnList>
+ </div>
+ </form>
+</body>
+</html>
+.cs
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+AWP T.21.69 Monisha Mudaliar
+namespace WebApplication2
+{
+ public partial class WebForm25 : System.Web.UI.Page
+ {
+ protected void Page_Load(object sender, EventArgs e)
+ {
+ if (!IsPostBack)
+ {
+ SqlConnection con = new SqlConnection("data source=SQL;Initial 
+Catalog=tyit911;user
+ Id = user1; Password = user1");
+ SqlCommand cmd = new SqlCommand("select Id,name from Student1", 
+con);
+ con.Open();
+ SqlDataReader rd = cmd.ExecuteReader();
+ DropDownList1.DataSource = rd;
+ DropDownList1.DataTextField = "Id";
+ DropDownList1.DataValueField = "name";
+ DropDownList1.DataBind();
+ con.Close();
+ }
+ }
+ protected void DropDownList1_SelectedIndexChanged(object sender, 
+EventArgs e)
+ {
+ Response.Write(DropDownList1.SelectedValue);
+ }
+ }
+}
