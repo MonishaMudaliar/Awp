@@ -1,0 +1,37 @@
+B. Create Web Form to demonstrate use of Adrotator Control.
+CODE: 
+.aspx
+<%@ Page Language="C#" AutoEventWireup="true" 
+CodeBehind="WebForm1.aspx.cs" Inherits="Practical_4b.WebForm1" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ <asp:AdRotator ID="AdRotator1" runat="server" 
+AdvertisementFile="~/XMLFile1.xml" />
+ </div>
+ </form>
+</body>
+</html>
+XMLFile1.xml
+<?xml version="1.0" encoding="utf-8" ?>
+<Advertisements>
+<Ad>
+<ImageUrl>download2.jpg</ImageUrl>
+<NavigateUrl>https://gmail.com </NavigateUrl>
+<AlternateText>Gmail</AlternateText>
+<Keyword>gmail</Keyword>
+<Impressions>50</Impressions>
+</Ad>
+<Ad>
+<ImageUrl>download1.jpg</ImageUrl>
+<NavigateUrl>https://instagram.com </NavigateUrl>
+<AlternateText>Instagram</AlternateText>
+<Keyword>instagram</Keyword>
+<Impressions>50</Impressions>
+</Ad>
+</Advertisements>
