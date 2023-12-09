@@ -1,0 +1,56 @@
+A. Create a web application bind data in a multiline textbox by 
+querying in another textbox.
+CODE: 
+.aspx
+<%@ Page Language="C#" AutoEventWireup="true" 
+CodeBehind="WebForm2.aspx.cs" Inherits="WebApplication6.WebForm16" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+ <asp:TextBox ID="TextBox2" runat="server" 
+TextMode="MultiLine"></asp:TextBox>
+ <br />
+ <asp:Button ID="Button1" runat="server" Text="Button" 
+OnClick="Button1_Click" />
+ </div>
+ </form>
+</body>
+</html>
+.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+AWP T.21.69 Monisha Mudaliar
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+namespace WebApplication16
+{
+ public partial class WebForm2 : System.Web.UI.Page
+ {
+ protected void Page_Load(object sender, EventArgs e)
+ {
+ }
+ protected void Button1_Click(object sender, EventArgs e)
+ {
+ SqlConnection con = new SqlConnection("data source=SQL;Initial 
+Catalog=tyit911;user Id=user1;Password=user1");
+ SqlCommand cmd = new SqlCommand(TextBox1.Text, con);
+ con.Open();
+ SqlDataReader rd = cmd.ExecuteReader();
+ while (rd.Read())
+ {
+ TextBox2.Text += rd[0] + " " + rd[1]+"\n";
+ }
+ con.Close();
+ }
+ }
+}
