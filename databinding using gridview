@@ -1,0 +1,47 @@
+B. Create a web application to display Using Disconnected 
+Data Access and Databinding using GridView.
+CODE: 
+.aspx
+<%@ Page Language="C#" AutoEventWireup="true" 
+CodeBehind="WebForm1.aspx.cs"
+Inherits="WebApplication25.WebForm1" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ <asp:GridView ID="GridView1" runat="server"></asp:GridView>
+ </div>
+ </form>
+</body>
+</html>
+.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+namespace WebApplication25
+{
+ public partial class WebForm1 : System.Web.UI.Page
+ {
+ protected void Page_Load(object sender, EventArgs e)
+ {
+AWP T.21.69 Monisha Mudaliar
+ SqlConnection con = new SqlConnection("Data Source=SQL;Initial 
+Catalog=tyit911;user
+ Id = user1; password = user1");
+ SqlDataAdapter ad = new SqlDataAdapter("select * from std", con);
+ DataSet ds = new DataSet();
+ ad.Fill(ds);
+ GridView1.DataSource = ds;
+ GridView1.DataBind();
+ }
+ }
+}
