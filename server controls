@@ -1,0 +1,122 @@
+A. Create a simple web page with various sever controls to 
+demonstrate setting and use of their properties. (Example : 
+AutoPostBack)
+CODE: 
+.aspx
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="one.aspx.cs" 
+Inherits="practical_3.one" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ <asp:DropDownList ID="DropDownList1" runat="server" 
+OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+ <asp:ListItem Text="nerul" Value="400706"></asp:ListItem>
+ <asp:ListItem Text="juinagar" Value="400707"></asp:ListItem>
+ <asp:ListItem Text="seawoods" Value="400708"></asp:ListItem>
+ </asp:DropDownList>
+ <asp:RadioButtonList ID="RadioButtonList1" runat="server" 
+AutoPostBack="true" 
+OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged">
+ <asp:ListItem Text="Small" Value="Small"></asp:ListItem>
+ <asp:ListItem Text="medium" Value="medium"></asp:ListItem>
+ <asp:ListItem Text="large" Value="large"></asp:ListItem>
+ </asp:RadioButtonList>
+ <asp:RadioButtonList ID="RadioButtonList2" runat="server" 
+AutoPostBack="true" 
+OnSelectedIndexChanged="RadioButtonList2_SelectedIndexChanged">
+ <asp:ListItem Text="red" Value="Small"></asp:ListItem>
+ <asp:ListItem Text="blue" Value="medium"></asp:ListItem>
+ <asp:ListItem Text="green" Value="large"></asp:ListItem>
+ </asp:RadioButtonList>
+ <asp:RadioButtonList ID="RadioButtonList3" runat="server" 
+AutoPostBack="true" 
+OnSelectedIndexChanged="RadioButtonList3_SelectedIndexChanged">
+ <asp:ListItem Text="Arial" Value="Arial"></asp:ListItem>
+AWP T.21.69 Monisha Mudaliar
+ <asp:ListItem Text="Times New Roman" Value="Times New 
+Roman"></asp:ListItem>
+ <asp:ListItem Text="Jokerman" Value="Jokerman"></asp:ListItem>
+ </asp:RadioButtonList>
+ <asp:CheckBox ID="CheckBox1" runat="server" Text="Bold" 
+AutoPostBack="true" OnCheckedChanged="CheckBox1_CheckedChanged" />
+ <asp:CheckBox ID="CheckBox2" runat="server" Text="Underline" 
+AutoPostBack="true" OnCheckedChanged="CheckBox2_CheckedChanged"/>
+ <asp:CheckBox ID="CheckBox3" runat="server" Text="italic" 
+AutoPostBack="true" OnCheckedChanged="CheckBox3_CheckedChanged"/>
+ <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+ </div>
+ </form>
+</body>
+</html>
+.cs
+using System;
+using System.Collections.Generic;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+namespace practical_3
+{
+ public partial class one : System.Web.UI.Page
+ {
+ protected void Page_Load(object sender, EventArgs e)
+ {
+ }
+ protected void DropDownList1_SelectedIndexChanged(object sender, 
+EventArgs e)
+ {
+ Label1.Text = DropDownList1.SelectedValue;
+ }
+ protected void RadioButtonList1_SelectedIndexChanged(object sender, 
+EventArgs e)
+ {
+ if (RadioButtonList1.SelectedIndex == 0)
+ Label1.Font.Size = FontUnit.Small;
+ if (RadioButtonList1.SelectedIndex == 1)
+ Label1.Font.Size = FontUnit.Medium;
+ if (RadioButtonList1.SelectedIndex == 2)
+ Label1.Font.Size = FontUnit.Large;
+ }
+ protected void RadioButtonList2_SelectedIndexChanged(object sender, 
+EventArgs e)
+ {
+AWP T.21.69 Monisha Mudaliar
+ if (RadioButtonList2.SelectedIndex == 0)
+ Label1.ForeColor = System.Drawing.Color.Red;
+ if (RadioButtonList2.SelectedIndex == 1)
+ Label1.ForeColor = System.Drawing.Color.Blue;
+ if (RadioButtonList2.SelectedIndex == 2)
+ Label1.ForeColor = System.Drawing.Color.Green;
+ }
+ protected void RadioButtonList3_SelectedIndexChanged(object sender, 
+EventArgs e)
+ {
+ Label1.Font.Name = RadioButtonList3.SelectedValue;
+ }
+ protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
+ {
+ if (CheckBox1.Checked)
+ Label1.Font.Bold = true;
+ else
+ Label1.Font.Bold = true;
+ }
+ protected void CheckBox2_CheckedChanged(object sender, EventArgs e)
+ {
+ if (CheckBox2.Checked)
+ Label1.Font.Underline = true;
+ else
+ Label1.Font.Underline = true;
+ }
+ protected void CheckBox3_CheckedChanged(object sender, EventArgs e)
+ {
+ if (CheckBox3.Checked)
+ Label1.Font.Italic = true;
+ else
+ Label1.Font.Italic = true;
+ }
+ }
+}
