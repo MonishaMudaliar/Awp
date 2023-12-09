@@ -1,0 +1,43 @@
+iv. Interfaces
+CODE: 
+.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+AWP T.21.115 ANISHA BEGUM ABDUL HAMID SHAIKH
+namespace MyProject
+{
+ interface I1
+ {
+ string show();
+ }
+ interface I2
+ {
+ string show();
+ }
+ class D : I1, I2
+AWP T.21.69 Monisha Mudaliar
+ {
+ string I1.show()
+ {
+ return ("Hi");
+ }
+ string I2.show()
+ {
+ return ("<br />Bye");
+ }
+ }
+ public partial class WebForm1 : System.Web.UI.Page
+ {
+ protected void Page_Load(object sender, EventArgs e)
+ {
+ I1 a = new D();
+ I2 b = new D();
+ Response.Write(a.show());
+ Response.Write(b.show());
+ }
+ }
+}
