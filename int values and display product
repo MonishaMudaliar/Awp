@@ -1,0 +1,18 @@
+using System;
+class pract1a 
+{
+ public static void Main(string[] args) 
+ {
+ int n1, n2, n3, n4, ans;
+ Console.WriteLine("Enter 1st number : ");
+ n1=Int32.Parse(Console.ReadLine());
+ Console.WriteLine("Enter 2nd number : ");
+ n2=Int32.Parse(Console.ReadLine());
+ Console.WriteLine("Enter 3rd number : ");
+ n3=Int32.Parse(Console.ReadLine());
+ Console.WriteLine("Enter 4th number : ");
+ n4=Int32.Parse(Console.ReadLine());
+ ans=n1*n2*n3*n4;
+ Console.WriteLine("Product of 4 numbers is : "+ans);
+ }
+}
