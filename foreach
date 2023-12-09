@@ -1,0 +1,13 @@
+v. Use of foreach loop with arrays
+CODE: 
+using System;
+class Six {
+ static void Main() {
+ String[] s= 
+{"Divya","Shreya","Angel","Shilpa","Dishant","Aaron","Rishabh","Dharini","Sakshi","K
+athryn"};
+ foreach(String s1 in s) {
+ Console.WriteLine(s1);
+ }
+ }
+}
