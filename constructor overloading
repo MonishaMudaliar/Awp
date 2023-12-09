@@ -1,0 +1,56 @@
+iii. Constructor overloading
+CODE: 
+.aspx
+<%@ Page Language="C#" AutoEventWireup="true" 
+CodeBehind="WebForm7.aspx.cs" Inherits="Practical_3b_2.WebForm7" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ </div>
+ </form>
+</body>
+</html>
+.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+namespace Practical_3b_2
+{
+ public partial class WebForm7 : System.Web.UI.Page
+ {
+ int z; public WebForm7()
+ {
+ z = 25;
+ }
+ public WebForm7(int y)
+ {
+ z = y;
+ }
+ public WebForm7(WebForm7 obj)
+ {
+ z = obj.z;
+ }
+ public int show()
+ {
+ return z;
+ }
+AWP T.21.69 Monisha Mudaliar
+ protected void Page_Load(object sender, EventArgs e)
+ {
+ WebForm7 ob = new WebForm7();
+ Response.Write(ob.show());
+ WebForm7 ob1 = new WebForm7(15);
+ Response.Write("<br>" + ob1.show());
+ WebForm7 ob2 = new WebForm7();
+ Response.Write("<br>" + ob2.show());
+ }
+ }
+}
