@@ -1,0 +1,50 @@
+B. Create a web application to display records by using 
+database.
+CODE: 
+.aspx
+<%@ Page Language="C#" AutoEventWireup="true" 
+CodeBehind="WebForm3.aspx.cs"
+Inherits="WebApplication16.WebForm3" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ <asp:GridView ID="GridView1" runat="server"></asp:GridView>
+ </div>
+ </form>
+AWP T.21.69 Monisha Mudaliar
+</body>
+</html>
+.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+namespace WebApplication16
+{
+ public partial class WebForm3 : System.Web.UI.Page 
+ {
+ protected void Page_Load(object sender, EventArgs e)
+ {
+ SqlConnection con = new SqlConnection("data source=SQL;Initial 
+Catalog=tyit911;user Id=user1;Password=user1");
+ SqlCommand cmd = new SqlCommand("select * from std911", con);
+ con.Open();
+ SqlDataReader rd = cmd.ExecuteReader();
+ GridView1.DataSource = rd;
+ GridView1.DataBind();
+ con.Close();
+ }
+ protected void Unnamed1_SelectedIndexChanged(object sender, EventArgs e)
+ {
+ }
+ }
+}
