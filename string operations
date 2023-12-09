@@ -1,0 +1,28 @@
+B. Create an application to demonstrate string operations.
+CODE: 
+using System;
+class pract1b 
+{
+ public static void Main(string[] args)
+ {
+ string s = "syit passing to tyit";
+ Console.WriteLine("Trim function is : "+s.Trim());
+ Console.WriteLine("Substring function is : "+s.Substring(0,4));
+ Console.WriteLine("ToUpper function is : "+s.ToUpper());
+ Console.WriteLine("ToLower function is : "+s.ToLower());
+ Console.WriteLine("Replace function is : "+s.Replace("sy","ty"));
+ Console.WriteLine("PadLeft function is : "+s.PadLeft(20,'@'));
+ Console.WriteLine("Insert function is : "+s.Insert(5,"hi"));
+ Console.WriteLine("Remove function is : "+s.Remove(0,5));
+ Console.WriteLine("EndsWith function is : "+s.EndsWith("ral"));
+ Console.WriteLine("IndexOf function is : "+s.IndexOf("t"));
+AWP T.21.69 Monisha Mudaliar
+ string[]s1=s.Split();
+ foreach(string s2 in s1)
+ {
+ Console.WriteLine(s2);
+ }
+ string s3= string.Join("AWP", s1);
+ Console.WriteLine(s3);
+ }
+}
