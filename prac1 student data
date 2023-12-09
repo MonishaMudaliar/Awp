@@ -1,0 +1,40 @@
+C. Create an application that receives the (Student Id, Student 
+Name, Course Name, Date of Birth) information from a set of 
+students. The application should also display the information of 
+all the students once the data entered.
+CODE: 
+using System;
+public class student
+{
+ int rno , marks;
+ string name;
+ public void get()
+ {
+ Console.WriteLine("Enter your roll no : ");
+ rno= Convert.ToInt32(Console.ReadLine());
+ Console.WriteLine("Enter your name : ");
+ name= (Console.ReadLine());
+ Console.WriteLine("Enter your marks : ");
+ marks= Convert.ToInt32(Console.ReadLine());
+ }
+ public void put()
+ {
+ Console.WriteLine("Roll Number : "+rno);
+ Console.WriteLine("Name : "+name);
+ Console.WriteLine("Marks : "+marks);
+ }
+}
+class a
+{
+ public static void Main(String[] args)
+ {
+ student[] s= new student[5];
+AWP T.21.69 Monisha Mudaliar
+ for (int i=0; i<5; i++)
+ s[i]=new student();
+ for(int i=0; i<5; i++)
+ s[i].get();
+ for(int i=0; i<5; i++)
+ s[i].put();
+ }
+}
