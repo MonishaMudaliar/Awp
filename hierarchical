@@ -1,0 +1,56 @@
+2. Hierarchical Inheritance
+CODE: 
+.aspx
+<%@ Page Language="C#" AutoEventWireup="true" 
+CodeBehind="WebForm8.aspx.cs" Inherits="Practical_3b_2.WebForm8" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ </div>
+ </form>
+</body>
+</html>
+.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+namespace Practical_3b_2
+AWP T.21.69 Monisha Mudaliar
+{
+ class A
+ {
+ public int x = 2;
+ }
+ class B : A
+ {
+ public int sqr()
+ {
+ return (x * x);
+ }
+ }
+ class C : A
+ {
+ public int cube()
+ {
+ return (x * x * x);
+ }
+ }
+ public partial class WebForm8 : System.Web.UI.Page
+ {
+ protected void Page_Load(object sender, EventArgs e)
+ {
+ B ob = new B();
+ C ob1 = new C();
+ Response.Write(ob.sqr());
+ Response.Write("<br>" + ob1.cube());
+ }
+ }
+}
