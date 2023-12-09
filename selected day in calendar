@@ -1,0 +1,41 @@
+iii. Selected day in a calendar control using style.
+CODE: 
+.aspx
+<%@ Page Language="C#" AutoEventWireup="true" 
+CodeBehind="WebForm1.aspx.cs" Inherits="Practical_3b_3.WebForm1" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ <asp:Calendar ID="Calendar1" runat="server" 
+OnDayRender="Calendar1_DayRender" 
+OnSelectionChanged="Calendar1_SelectionChanged" ></asp:Calendar>
+ </div>
+ </form>
+</body>
+</html>
+.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+namespace Practical_3b_3
+{
+ public partial class WebForm1 : System.Web.UI.Page
+ {
+ protected void Page_Load(object sender, EventArgs e)
+ {
+ }
+ protected void Calendar1_SelectionChanged(object sender, EventArgs e)
+ {
+ Response.Write("selected date= " + 
+Calendar1.SelectedDate.ToShortDateString());
+ }
+ }
+}
