@@ -1,0 +1,115 @@
+A. Create a Registration form to demonstrate use of various 
+Validation controls.
+CODE: 
+.aspx
+<%@ Page Language="C#" AutoEventWireup="true" 
+CodeBehind="WebForm1.aspx.cs" Inherits="Practical_4a.WebForm1" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ Enter Name: <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+ <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+ControlToValidate="TextBox1" ErrorMessage="Please enter your 
+Name"></asp:RequiredFieldValidator>
+ <br />
+ ENter Age: <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+ <asp:RangeValidator ID="RangeValidator1" runat="server" 
+ControlToValidate="TextBox2" ErrorMessage="Enter valid 
+Age"></asp:RangeValidator>
+ <br />
+ Enter Mobile Number: <asp:TextBox ID="TextBox3" 
+runat="server"></asp:TextBox>
+ <asp:CustomValidator ID="CustomValidator1" runat="server" 
+ControlToValidate="TextBox3" 
+OnServerValidate="CustomValidator1_ServerValidate" ErrorMessage="Enter valid 
+Mobile Number"></asp:CustomValidator>
+ <br />
+ Enter Email-ID: <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
+ <asp:RegularExpressionValidator ID="RegularExpressionValidator1" 
+runat="server" ControlToValidate="TextBox4" ValidationExpression="\S+\@\S+\.\S+" 
+ErrorMessage="Enter valid Email-ID"></asp:RegularExpressionValidator>
+ <br />
+ Enter Password: <asp:TextBox ID="TextBox5" 
+runat="server"></asp:TextBox>
+AWP T.21.69 Monisha Mudaliar
+ <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
+ControlToValidate="TextBox5" ErrorMessage="Enter 
+Password"></asp:RequiredFieldValidator>
+ <br />
+ Re-Enter Password: <asp:TextBox ID="TextBox6" 
+runat="server"></asp:TextBox>
+ <asp:CompareValidator ID="CompareValidator1" runat="server" 
+ControlToValidate="TextBox6" ControlToCompare="TextBox5" Operator="Equal" 
+ErrorMessage="Password Missmatched"></asp:CompareValidator>
+ <br />
+ <asp:Button ID="Button1" runat="server" Text="Submit" />
+ </div>
+ </form>
+</body>
+</html>
+.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+namespace Practical_4a
+{
+ public partial class WebForm1 : System.Web.UI.Page
+ {
+ protected void Page_Load(object sender, EventArgs e)
+ {
+ }
+ protected void CustomValidator1_ServerValidate(object source, 
+ServerValidateEventArgs args)
+ {
+ if (args.Value.Length == 10)
+ args.IsValid = true;
+ else
+ args.IsValid = false;
+ }
+ protected void Button1_Click(object sender, EventArgs e)
+ {
+ if (Page.IsValid)
+ Response.Write("Data Submittted Successfully");
+ }
+ }
+}
+AWP T.21.69 Monisha Mudaliar
+Web.config
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ For more information on how to configure your ASP.NET application, please visit
+ https://go.microsoft.com/fwlink/?LinkId=169433
+ -->
+<configuration>
+ <system.web>
+ <compilation debug="true" targetFramework="4.7.2" />
+ <httpRuntime targetFramework="4.7.2" />
+ </system.web>
+<appSettings>
+<add key="validationSettings:UnobtrusiveValidationMode" 
+value="None"/>
+</appSettings>
+ <system.codedom>
+ <compilers>
+ <compiler language="c#;cs;csharp" extension=".cs" 
+type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.CSharpCodeProvider, 
+Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, 
+Culture=neutral, PublicKeyToken=31bf3856ad364e35" warningLevel="4" 
+compilerOptions="/langversion:default /nowarn:1659;1699;1701" />
+ <compiler language="vb;vbs;visualbasic;vbscript" extension=".vb" 
+type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.VBCodeProvider, 
+Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, 
+Culture=neutral, PublicKeyToken=31bf3856ad364e35" warningLevel="4" 
+compilerOptions="/langversion:default /nowarn:41008 
+/define:_MYTYPE=\&quot;Web\&quot; /optionInfer+" />
+ </compilers>
+ </system.codedom>
+</configuration>
