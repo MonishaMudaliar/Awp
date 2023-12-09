@@ -1,0 +1,52 @@
+ii. Money Conversion
+CODE: 
+.aspx
+<%@ Page Language="C#" AutoEventWireup="true" 
+CodeBehind="WebForm3.aspx.cs" Inherits="Practical_3b_2.WebForm3" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ Enter Money in Rs. : <asp:TextBox ID="TextBox1" 
+runat="server"></asp:TextBox>
+ <asp:Button ID="Button1" runat="server" Text="Dollar" 
+OnClick="Button1_Click" style="width:46px" />
+ <asp:Button ID="Button2" runat="server" Text="Yen" 
+OnClick="Button2_Click" style="width:37px" />
+ </div>
+ </form>
+</body>
+</html>
+.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+namespace Practical_3b_2
+{
+ public partial class WebForm3 : System.Web.UI.Page
+ {
+ protected void Page_Load(object sender, EventArgs e)
+ {
+ }
+ protected void Button1_Click(object sender, EventArgs e)
+ {
+ int x = Convert.ToInt32(TextBox1.Text);
+ int d = x / 75;
+ Response.Write(d);
+AWP T.21.69 Monisha Mudaliar
+ }
+ protected void Button2_Click(object sender, EventArgs e)
+ {
+ int y = Convert.ToInt32(TextBox1.Text);
+ int c = y * 20;
+ Response.Write(c);
+ }
+ }
+}
