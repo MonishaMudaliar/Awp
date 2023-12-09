@@ -1,0 +1,58 @@
+B. Create a web application for inserting and deleting record 
+from a database. (Using Execute-Non Query).
+CODE: 
+.aspx
+<%@ Page Language="C#" AutoEventWireup="true" 
+CodeBehind="WebForm26.aspx.cs"
+Inherits="WebApplication2.WebForm26" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ Enter id:<asp:TextBox ID="TextBox1" runat="server"></asp:TextBox><br />
+ Enter name:<asp:TextBox ID="TextBox2" runat="server"></asp:TextBox><br 
+/>
+ Enter class:<asp:TextBox ID="TextBox3" runat="server"></asp:TextBox><br 
+/>
+ <asp:Button ID="Button1" runat="server" Text="Button" 
+OnClick="Button1_Click" />
+ </div>
+ </form>
+</body>
+</html>
+.cs
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+AWP T.21.69 Monisha Mudaliar
+namespace WebApplication2
+{
+ public partial class WebForm26 : System.Web.UI.Page
+ {
+ protected void Page_Load(object sender, EventArgs e)
+ {
+ }
+ protected void Button1_Click(object sender, EventArgs e)
+ {
+ SqlConnection con = new SqlConnection("data source=SQL;Initial 
+Catalog=tyit911;user Id = user1; Password = user1");
+ SqlCommand cmd = new SqlCommand("insert into Student1 values(@Id, 
+@name, @class)", con);
+ cmd.Parameters.AddWithValue("@Id", TextBox1.Text);
+ cmd.Parameters.AddWithValue("@name", TextBox2.Text);
+ cmd.Parameters.AddWithValue("@class", TextBox3.Text);
+ con.Open();
+ cmd.ExecuteNonQuery();
+ Response.Write("data inserted");
+ con.Close();
+ }
+ }
+}
