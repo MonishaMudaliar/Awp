@@ -1,0 +1,83 @@
+C. Create a web application to demonstrate use of various Ajax 
+controls.
+CODE: 
+.aspx
+<%@ Page Language="C#" AutoEventWireup="true" 
+CodeBehind="WebForm1.aspx.cs"
+Inherits="WebApplication22.WebForm1" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ outside panel:<asp:Label ID="Label1" runat="server" 
+Text="Label"></asp:Label>
+ <asp:ScriptManager ID="ScriptManager1" 
+runat="server"></asp:ScriptManager>
+ <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+ <ContentTemplate>
+ Enter num1:<asp:TextBox ID="TextBox1" 
+runat="server"></asp:TextBox>
+ <br />Enter num2:<asp:TextBox ID="TextBox2" 
+runat="server"></asp:TextBox>
+ <br /><asp:Button ID="Button1" runat="server" Text="Button" 
+OnClick="Button1_Click" />
+ <asp:UpdateProgress ID="UpdateProgress1" runat="server">
+ <ProgressTemplate>
+ Please wait....
+ </ProgressTemplate>
+ </asp:UpdateProgress>
+AWP T.21.69 Monisha Mudaliar
+ <br />add:<asp:Label ID="Label2" runat="server" 
+Text="Label"></asp:Label>
+ <br />sub:<asp:Label ID="Label3" runat="server" 
+Text="Label"></asp:Label>
+ <br />multi<asp:Label ID="Label4" runat="server" 
+Text="Label"></asp:Label>
+ <br />div:<asp:Label ID="Label5" runat="server" 
+Text="Label"></asp:Label>
+ <asp:Timer ID="Timer1" runat="server" Interval="5000" 
+OnTick="Timer1_Tick"></asp:Timer>
+ <asp:Label ID="Label6" runat="server" Text="Label"></asp:Label>
+ </ContentTemplate>
+ </asp:UpdatePanel>
+ </div>
+ </form>
+</body>
+</html>
+.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+namespace WebApplication22
+{
+ public partial class WebForm1 : System.Web.UI.Page
+ {
+ protected void Page_Load(object sender, EventArgs e)
+ {
+ Label1.Text = DateTime.Now.ToLongTimeString();
+ }
+ protected void Button1_Click(object sender, EventArgs e)
+ {
+ System.Threading.Thread.Sleep(2000);
+ int x, y;
+ x = Convert.ToInt32(TextBox1.Text);
+ y = Convert.ToInt32(TextBox2.Text);
+ Label2.Text = (x + y).ToString();
+ Label3.Text = (x - y).ToString();
+ Label4.Text = (x * y).ToString();
+AWP T.21.69 Monisha Mudaliar
+ Label5.Text = (x / y).ToString();
+ }
+ protected void Timer1_Tick(object sender, EventArgs e)
+ {
+ Label6.Text = (DateTime.Now.ToLongTimeString());
+ }
+ }
+}
