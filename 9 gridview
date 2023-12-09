@@ -1,169 +1,129 @@
-A. Create a web application to demonstrate use of GridView 
-button column,GridView events and paging event.
-CODE: 
-.aspx
-<%@ Page Language="C#" AutoEventWireup="true" 
-CodeBehind="WebForm3.aspx.cs"
-Inherits="WebApplication21.WebForm3" %>
+b. Create a web application to demonstrate use of GridView button column and GridView
+events.
+
+Code:
+WebForm3.aspx
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm3.aspx.cs" Inherits="WebApplication21.WebForm3" %>
+
 <!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
- <title></title>
+    <title></title>
 </head>
 <body>
- <form id="form1" runat="server">
- <div>
- GridView:<br />
- <asp:GridView ID="GridView1" runat="server" AllowPaging="True" 
-AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="Id" 
-DataSourceID="SqlDataSource1" PageSize="2">
- <Columns>
- <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" 
-ShowSelectButton="True" />
- <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" 
-SortExpression="Id" />
- <asp:BoundField DataField="rollno" HeaderText="rollno" 
-SortExpression="rollno" />
- <asp:BoundField DataField="name" HeaderText="name" 
-SortExpression="name" />
- <asp:BoundField DataField="class" HeaderText="class" 
-SortExpression="class" />
-AWP T.21.69 Monisha Mudaliar
- <asp:BoundField DataField="marks" HeaderText="marks" 
-SortExpression="marks" />
- <asp:BoundField DataField="subject" HeaderText="subject" 
-SortExpression="subject" />
- </Columns>
- </asp:GridView>
- <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
-ConnectionString="<%$ ConnectionStrings:tyit911ConnectionString %>" 
-DeleteCommand="DELETE FROM [test] WHERE [Id] = @Id" 
-InsertCommand="INSERT INTO [test] ([Id], [rollno], [name], [class], [marks], 
-[subject]) VALUES (@Id, @rollno, @name, @class, @marks, @subject)" 
-SelectCommand="SELECT * FROM [test]" UpdateCommand="UPDATE [test] SET 
-[rollno] = @rollno, [name] = @name, [class] = @class, [marks] = @marks, [subject] = 
-@subject WHERE [Id] = @Id">
- <DeleteParameters>
- <asp:Parameter Name="Id" Type="Int32" />
- </DeleteParameters>
- <InsertParameters>
- <asp:Parameter Name="Id" Type="Int32" />
- <asp:Parameter Name="rollno" Type="String" />
- <asp:Parameter Name="name" Type="String" />
- <asp:Parameter Name="class" Type="String" />
- <asp:Parameter Name="marks" Type="String" />
- <asp:Parameter Name="subject" Type="String" />
- </InsertParameters>
- <UpdateParameters>
- <asp:Parameter Name="rollno" Type="String" />
- <asp:Parameter Name="name" Type="String" />
- <asp:Parameter Name="class" Type="String" />
- <asp:Parameter Name="marks" Type="String" />
- <asp:Parameter Name="subject" Type="String" />
- <asp:Parameter Name="Id" Type="Int32" />
- </UpdateParameters>
- </asp:SqlDataSource>
-AWP T.21.69 Monisha Mudaliar
- <br />
- FormsView:<br />
- <br />
- <asp:FormView ID="FormView1" runat="server" DataKeyNames="Id"
-DataSourceID="SqlDataSource2">
- <EditItemTemplate>
- Id:
- <asp:Label ID="IdLabel1" runat="server" Text='<%# Eval("Id") %>' />
- <br />
- rollno:
- <asp:TextBox ID="rollnoTextBox" runat="server" Text='<%# Bind("rollno") 
-%>' />
- <br />
- name:
- <asp:TextBox ID="nameTextBox" runat="server" Text='<%# Bind("name") 
-%>' />
- <br />
- class:
- <asp:TextBox ID="classTextBox" runat="server" Text='<%# Bind("class") 
-%>' />
- <br />
- marks:
- <asp:TextBox ID="marksTextBox" runat="server" Text='<%# Bind("marks") 
-%>' />
- <br />
- subject:
- <asp:TextBox ID="subjectTextBox" runat="server" Text='<%# 
-Bind("subject") %>' />
- <br />
- <asp:LinkButton ID="UpdateButton" runat="server" 
-CausesValidation="True" CommandName="Update" Text="Update" />
- &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" 
-CausesValidation="False" CommandName="Cancel" Text="Cancel" />
-AWP T.21.69 Monisha Mudaliar
- </EditItemTemplate>
- <InsertItemTemplate>
- Id:
- <asp:TextBox ID="IdTextBox" runat="server" Text='<%# Bind("Id") %>' />
- <br />
- rollno:
- <asp:TextBox ID="rollnoTextBox" runat="server" Text='<%# Bind("rollno") 
-%>' />
- <br />
- name:
- <asp:TextBox ID="nameTextBox" runat="server" Text='<%# Bind("name") 
-%>' />
- <br />
- class:
- <asp:TextBox ID="classTextBox" runat="server" Text='<%# Bind("class") 
-%>' />
- <br />
- marks:
- <asp:TextBox ID="marksTextBox" runat="server" Text='<%# Bind("marks") 
-%>' />
- <br />
- subject:
- <asp:TextBox ID="subjectTextBox" runat="server" Text='<%# 
-Bind("subject") %>' />
- <br />
- <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True"
-CommandName="Insert" Text="Insert" />
- &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" 
-CausesValidation="False" CommandName="Cancel" Text="Cancel" />
- </InsertItemTemplate>
- <ItemTemplate>
- Id:
- <asp:Label ID="IdLabel" runat="server" Text='<%# Eval("Id") %>' />
-AWP T.21.69 Monisha Mudaliar
- <br />
- rollno:
- <asp:Label ID="rollnoLabel" runat="server" Text='<%# Bind("rollno") %>' />
- <br />
- name:
- <asp:Label ID="nameLabel" runat="server" Text='<%# Bind("name") %>' 
-/>
- <br />
- class:
- <asp:Label ID="classLabel" runat="server" Text='<%# Bind("class") %>' />
- <br />
- marks:
- <asp:Label ID="marksLabel" runat="server" Text='<%# Bind("marks") 
-%>' />
- <br />
- subject:
- <asp:Label ID="subjectLabel" runat="server" Text='<%# Bind("subject") 
-%>' />
- <br />
- </ItemTemplate>
- </asp:FormView>
- </div>
- <br />
- <asp:SqlDataSource ID="SqlDataSource2" runat="server" 
-ConnectionString="<%$ ConnectionStrings:tyit911ConnectionString %>" 
-SelectCommand="SELECT * FROM [test] WHERE ([Id] = @Id)">
- <SelectParameters>
- <asp:ControlParameter ControlID="GridView1" Name="Id" 
-PropertyName="SelectedValue" Type="Int32" />
- </SelectParameters>
- </asp:SqlDataSource>
- </form>
+    <form id="form1" runat="server">
+        <div>
+            GridView:<br />
+            <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="SqlDataSource1" PageSize="2">
+                <Columns>
+                    <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" ShowSelectButton="True" />
+                    <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" SortExpression="Id" />
+                    <asp:BoundField DataField="rollno" HeaderText="rollno" SortExpression="rollno" />
+                    <asp:BoundField DataField="name" HeaderText="name" SortExpression="name" />
+                    <asp:BoundField DataField="class" HeaderText="class" SortExpression="class" />
+                    <asp:BoundField DataField="marks" HeaderText="marks" SortExpression="marks" />
+                    <asp:BoundField DataField="subject" HeaderText="subject" SortExpression="subject" />
+                </Columns>
+            </asp:GridView>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:tyit911ConnectionString %>" DeleteCommand="DELETE FROM [test] WHERE [Id] = @Id" InsertCommand="INSERT INTO [test] ([Id], [rollno], [name], [class], [marks], [subject]) VALUES (@Id, @rollno, @name, @class, @marks, @subject)" SelectCommand="SELECT * FROM [test]" UpdateCommand="UPDATE [test] SET [rollno] = @rollno, [name] = @name, [class] = @class, [marks] = @marks, [subject] = @subject WHERE [Id] = @Id">
+                <DeleteParameters>
+                    <asp:Parameter Name="Id" Type="Int32" />
+                </DeleteParameters>
+                <InsertParameters>
+                    <asp:Parameter Name="Id" Type="Int32" />
+                    <asp:Parameter Name="rollno" Type="String" />
+                    <asp:Parameter Name="name" Type="String" />
+                    <asp:Parameter Name="class" Type="String" />
+                    <asp:Parameter Name="marks" Type="String" />
+                    <asp:Parameter Name="subject" Type="String" />
+                </InsertParameters>
+                <UpdateParameters>
+                    <asp:Parameter Name="rollno" Type="String" />
+                    <asp:Parameter Name="name" Type="String" />
+                    <asp:Parameter Name="class" Type="String" />
+                    <asp:Parameter Name="marks" Type="String" />
+                    <asp:Parameter Name="subject" Type="String" />
+                    <asp:Parameter Name="Id" Type="Int32" />
+                </UpdateParameters>
+            </asp:SqlDataSource>
+            <br />
+            FormsView:<br />
+            <br />
+            <asp:FormView ID="FormView1" runat="server" DataKeyNames="Id" DataSourceID="SqlDataSource2">
+                <EditItemTemplate>
+                    Id:
+                    <asp:Label ID="IdLabel1" runat="server" Text='<%# Eval("Id") %>' />
+                    <br />
+                    rollno:
+                    <asp:TextBox ID="rollnoTextBox" runat="server" Text='<%# Bind("rollno") %>' />
+                    <br />
+                    name:
+                    <asp:TextBox ID="nameTextBox" runat="server" Text='<%# Bind("name") %>' />
+                    <br />
+                    class:
+                    <asp:TextBox ID="classTextBox" runat="server" Text='<%# Bind("class") %>' />
+                    <br />
+                    marks:
+                    <asp:TextBox ID="marksTextBox" runat="server" Text='<%# Bind("marks") %>' />
+                    <br />
+                    subject:
+                    <asp:TextBox ID="subjectTextBox" runat="server" Text='<%# Bind("subject") %>' />
+                    <br />
+                    <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" />
+                    &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
+                </EditItemTemplate>
+                <InsertItemTemplate>
+                    Id:
+                    <asp:TextBox ID="IdTextBox" runat="server" Text='<%# Bind("Id") %>' />
+                    <br />
+                    rollno:
+                    <asp:TextBox ID="rollnoTextBox" runat="server" Text='<%# Bind("rollno") %>' />
+                    <br />
+                    name:
+                    <asp:TextBox ID="nameTextBox" runat="server" Text='<%# Bind("name") %>' />
+                    <br />
+                    class:
+                    <asp:TextBox ID="classTextBox" runat="server" Text='<%# Bind("class") %>' />
+                    <br />
+                    marks:
+                    <asp:TextBox ID="marksTextBox" runat="server" Text='<%# Bind("marks") %>' />
+                    <br />
+                    subject:
+                    <asp:TextBox ID="subjectTextBox" runat="server" Text='<%# Bind("subject") %>' />
+                    <br />
+                    <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
+                    &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
+                </InsertItemTemplate>
+                <ItemTemplate>
+                    Id:
+                    <asp:Label ID="IdLabel" runat="server" Text='<%# Eval("Id") %>' />
+                    <br />
+                    rollno:
+                    <asp:Label ID="rollnoLabel" runat="server" Text='<%# Bind("rollno") %>' />
+                    <br />
+                    name:
+                    <asp:Label ID="nameLabel" runat="server" Text='<%# Bind("name") %>' />
+                    <br />
+                    class:
+                    <asp:Label ID="classLabel" runat="server" Text='<%# Bind("class") %>' />
+                    <br />
+                    marks:
+                    <asp:Label ID="marksLabel" runat="server" Text='<%# Bind("marks") %>' />
+                    <br />
+                    subject:
+                    <asp:Label ID="subjectLabel" runat="server" Text='<%# Bind("subject") %>' />
+                    <br />
+
+                </ItemTemplate>
+            </asp:FormView>
+        </div>
+        <br />
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:tyit911ConnectionString %>" SelectCommand="SELECT * FROM [test] WHERE ([Id] = @Id)">
+            <SelectParameters>
+                <asp:ControlParameter ControlID="GridView1" Name="Id" PropertyName="SelectedValue" Type="Int32" />
+            </SelectParameters>
+        </asp:SqlDataSource>
+    </form>
 </body>
-AWP T.21.69 Monisha Mudaliar
 </html>
