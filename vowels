@@ -1,0 +1,21 @@
+iii. Test for vowels.
+CODE: 
+using System;
+class Four {
+ public static void Main() {
+ char c;
+ c= Convert.ToChar(Console.ReadLine());
+ switch(c) {
+ case 'a':
+ case 'e':
+ case 'i':
+ case 'o':
+ case 'u':
+ Console.WriteLine("It is a Vowel");
+ break;
+ default:
+ Console.WriteLine("Consonant");
+ break;
+ }
+ }
+}
