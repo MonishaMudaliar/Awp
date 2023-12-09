@@ -1,0 +1,50 @@
+C. Create Web Form to demonstrate use User Controls.
+CODE: 
+.aspx
+<%@ Page Language="C#" AutoEventWireup="true" 
+CodeBehind="WebForm1.aspx.cs" Inherits="Practical_4c.WebForm1" %>
+<!DOCTYPE html>
+<%@ Register src="WebUserControl1.ascx" tagname="WebUserControl1" 
+tagprefix="uc1"%>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ Enter date of Birth: <uc1:WebUserControl1 ID="WebUserControl111" 
+runat="server" />
+ </div>
+ </form>
+</body>
+</html>
+WebUserControl.ascx
+AWP T.21.69 Monisha Mudaliar
+<%@ Control Language="C#" AutoEventWireup="true" 
+CodeBehind="WebUserControl1.ascx.cs" Inherits="Practical_4c.WebUserControl1" 
+%>
+<asp:Calendar ID="Calendar1" runat="server" 
+OnSelectionChanged="Calendar1_SelectionChanged"></asp:Calendar>
+<asp:Label ID="Label1" runat="server" 
+OnSelectionChanged="Calendar1_SelectionChanged" Text="Label"></asp:Label>
+WebUserControl.ascx.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+namespace Practical_4c
+{
+ public partial class WebUserControl1 : System.Web.UI.UserControl
+ {
+ protected void Page_Load(object sender, EventArgs e)
+ {
+ }
+ protected void Calendar1_SelectionChanged(object sender, EventArgs e)
+ {
+ Label1.Text = Calendar1.SelectedDate.ToShortDateString();
+ }
+ }
+}
