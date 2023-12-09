@@ -1,0 +1,89 @@
+B. Create a web application to demonstrate Form Security with 
+proper Authentication and Authorization properties.
+CODE: 
+.aspx[Form1]
+<%@ Page Language="C#" AutoEventWireup="true" 
+CodeBehind="WebForm2.aspx.cs"
+Inherits="WebApplication17.WebForm2" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ Enter username:<asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+ <br />Enter password:<asp:TextBox ID="TextBox2" 
+runat="server"></asp:TextBox>
+ <br />
+ <asp:Button ID="Button1" runat="server" Text="Login" 
+OnClick="Button1_Click" />
+ </div>
+ </form>
+</body>
+</html>
+Web.config
+<configuration>
+<system.web>
+ <compilation debug="true" targetFramework="4.7.2" />
+<authentication mode="Forms">
+<forms loginUrl="WebForm2.aspx" defaultUrl="WebForm3.aspx" timeout="30" 
+protection="None">
+AWP T.21.69 Monisha Mudaliar
+<credentials passwordFormat="Clear">
+<user name="awp" password="awp@123"/>
+</credentials>
+</forms>
+</authentication>
+<authorization>
+<deny users="?"/>
+</authorization>
+.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.Security;
+namespace WebApplication17
+{
+ public partial class WebForm2 : System.Web.UI.Page
+ {
+ protected void Page_Load(object sender, EventArgs e)
+ {
+ }
+ protected void Button1_Click(object sender, EventArgs e)
+ {
+ if (FormsAuthentication.Authenticate(TextBox1.Text, TextBox2.Text))
+ {
+ FormsAuthentication.RedirectFromLoginPage(TextBox1.Text, false);
+ }
+ else
+ {
+ Response.Write("Wrong credentials");
+ TextBox1.Text = " ";
+ TextBox2.Text = " ";
+ }
+ }
+ }
+}
+.aspx[Form2]
+<%@ Page Language="C#" AutoEventWireup="true" 
+CodeBehind="WebForm3.aspx.cs"
+Inherits="WebApplication17.WebForm3" %>
+AWP T.21.69 Monisha Mudaliar
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ Welcome
+ </div>
+ </form>
+</body>
+</html>
