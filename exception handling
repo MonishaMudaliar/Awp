@@ -1,0 +1,57 @@
+ii. Exception handling
+CODE: 
+.aspx
+<%@ Page Language="C#" AutoEventWireup="true" 
+CodeBehind="WebForm9.aspx.cs" Inherits="Practical_3b_2.WebForm9" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+ <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+ <asp:Button ID="Button1" runat="server" Text="Button" 
+OnClick="Button1_Click" />
+ <br />
+ <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+ </div>
+ </form>
+</body>
+</html>
+.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+AWP T.21.69 Monisha Mudaliar
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+namespace Practical_3b_2
+{
+ public partial class WebForm9 : System.Web.UI.Page
+ {
+ protected void Page_Load(object sender, EventArgs e)
+ {
+ }
+ protected void Button1_Click(object sender, EventArgs e)
+ {
+ int x = Convert.ToInt32(TextBox1.Text);
+ int y = Convert.ToInt32(TextBox2.Text);
+ try
+ {
+ Label1.Text = (x / y).ToString();
+ }
+ catch (DivideByZeroException d)
+ {
+ Label1.Text = d.Message;
+ }
+ finally
+ {
+ Response.Write("Successfully Executed");
+ }
+ }
+ }
+}
