@@ -1,0 +1,104 @@
+A. Create a Registration form to demonstrate use of various 
+Validation controls.
+CODE: 
+.aspx(Form-1)
+<%@ Page Language="C#" AutoEventWireup="true" 
+CodeBehind="WebForm1.aspx.cs" Inherits="Practical_5a.WebForm1" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ </div>
+ <asp:SiteMapPath ID="SiteMapPath1" runat="server"></asp:SiteMapPath>
+ <br />
+ <br />
+ <asp:Menu ID="Menu1" runat="server" 
+DataSourceID="SiteMapDataSource1"></asp:Menu>
+ <asp:SiteMapDataSource ID="SiteMapDataSourse1" runat="server" />
+ </form>
+</body>
+</html>
+.aspx(Form-2)
+<%@ Page Language="C#" AutoEventWireup="true" 
+CodeBehind="WebForm2.aspx.cs" Inherits="Practical_5a.WebForm2" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
+ <br />
+AWP T.21.69 Monisha Mudaliar
+ Welcome to SIES
+ </div>
+ </form>
+</body>
+</html>
+.aspx(Form-3)
+<%@ Page Language="C#" AutoEventWireup="true" 
+CodeBehind="WebForm3.aspx.cs" Inherits="Practical_5a.WebForm3" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+ <title></title>
+</head>
+<body>
+ <form id="form1" runat="server">
+ <div>
+ <asp:SiteMapPath ID="SiteMapPath1" runat="server"></asp:SiteMapPath>
+ <br />
+ Welcome to TYBSc IT 2023-24
+ </div>
+ </form>
+</body>
+</html>
+Web.sitemap
+<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+ <siteMapNode url="WebForm1.aspx" title="Home" description="Home">
+ <siteMapNode url="WebForm2.aspx" title="Second page" description="Second 
+page" />
+ <siteMapNode url="WebForm3.aspx" title="Third page" description="Third page" 
+/>
+ </siteMapNode>
+</siteMap>
+Web.config
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ For more information on how to configure your ASP.NET application, please visit
+ https://go.microsoft.com/fwlink/?LinkId=169433
+ -->
+<configuration>
+ <system.web>
+ <siteMap>
+ <providers>
+ <remove name="MySqlSiteMapProvider"/>
+AWP T.21.69 Monisha Mudaliar
+ </providers>
+ </siteMap>
+ <compilation debug="true" targetFramework="4.7.2" />
+ <httpRuntime targetFramework="4.7.2" />
+ </system.web>
+ <system.codedom>
+ <compilers>
+ <compiler language="c#;cs;csharp" extension=".cs" 
+type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.CSharpCodeProvider, 
+Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, 
+Culture=neutral, PublicKeyToken=31bf3856ad364e35" warningLevel="4" 
+compilerOptions="/langversion:default /nowarn:1659;1699;1701" />
+ <compiler language="vb;vbs;visualbasic;vbscript" extension=".vb" 
+type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.VBCodeProvider, 
+Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, 
+Culture=neutral, PublicKeyToken=31bf3856ad364e35" warningLevel="4" 
+compilerOptions="/langversion:default /nowarn:41008 
+/define:_MYTYPE=\&quot;Web\&quot; /optionInfer+" />
+ </compilers>
+ </system.codedom>
+</configuration>
