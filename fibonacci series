@@ -1,0 +1,21 @@
+i. Generate Fibonacci series.
+CODE: 
+using System;
+class Five {
+ public static void Main() {
+ int n=Convert.ToInt32(Console.ReadLine());
+ int n1,n2,n3;
+ n1=0;
+ n2=1;
+ Console.WriteLine(n1);
+ Console.WriteLine(n2);
+ int i=2;
+ while(i<=n){
+ n3=n1+n2;
+ Console.WriteLine(n3);
+ n1=n2;
+ n2=n3;
+ i++;
+ }
+ }
+}
